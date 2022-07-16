@@ -7,6 +7,7 @@ const catchAsync = require('./utils/catchAsync');
 const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const Campground = require('./models/campground');
+const Review = require('./models/review');
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp', { useNewUrlParser: true }, { useCreateIndex: true }, { useUnifiedTopology: true });
 
@@ -96,6 +97,18 @@ app.delete(
   catchAsync(async (req, res) => {
     await Campground.findByIdAndDelete(req.params.id);
     res.redirect('/campgrounds');
+  })
+);
+
+app.post(
+  '/campgrounds/:id/reviews',
+  catchAsync(async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    const review = new Review(req.body.review);
+    campground.reviews.push(review);
+    await campground.save();
+    await review.save();
+    res.redirect(`/campgrounds/${campground._id}`);
   })
 );
 
