@@ -123,6 +123,17 @@ app.post(
   })
 );
 
+app.delete(
+  '/campgrounds/:id/reviews/:reviewId',
+  catchAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
+    // $pull is a mongoose method that removes the document from the array
+    await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/campgrounds/${id}`);
+  })
+);
+
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found', 404));
 });
