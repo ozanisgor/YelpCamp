@@ -29,6 +29,7 @@ router.post(
     campground.reviews.push(review);
     await campground.save();
     await review.save();
+    req.flash('success', 'Review created successfully');
     res.redirect(`/campgrounds/${campground._id}`);
   })
 );
@@ -40,6 +41,7 @@ router.delete(
     // $pull is a mongoose method that removes the document from the array
     await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
+    req.flash('success', 'Review deleted successfully');
     res.redirect(`/campgrounds/${id}`);
   })
 );
