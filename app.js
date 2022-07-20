@@ -34,6 +34,12 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// req.body parser
+app.use(express.urlencoded({ extended: true }));
+// we need method-override for update and delete
+app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')));
+
 const sessionConfig = {
   secret: 'thisshouldbeabettersecret',
   resave: false,
@@ -60,12 +66,6 @@ app.use((req, res, next) => {
   res.locals.error = req.flash('error');
   next();
 });
-
-// req.body parser
-app.use(express.urlencoded({ extended: true }));
-// we need method-override for update and delete
-app.use(methodOverride('_method'));
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', userRoutes);
 app.use('/campgrounds', campgroundRoutes);
