@@ -1,7 +1,7 @@
 const express = require('express');
 // "Cannot read property 'reviews' of null" to fix this express router error, see below option:
 const router = express.Router({ mergeParams: true });
-const { validateReview } = require('../middleware');
+const { validateReview, isLoggedIn } = require('../middleware');
 const Campground = require('../models/campground');
 const Review = require('../models/review');
 const ExpressError = require('../utils/ExpressError');
@@ -9,10 +9,12 @@ const catchAsync = require('../utils/catchAsync');
 
 router.post(
   '/',
+  isLoggedIn,
   validateReview,
   catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
     const review = new Review(req.body.review);
+    review.author = req.user._id;
     campground.reviews.push(review);
     await campground.save();
     await review.save();
