@@ -1,7 +1,7 @@
 const express = require('express');
 // "Cannot read property 'reviews' of null" to fix this express router error, see below option:
 const router = express.Router({ mergeParams: true });
-const { validateReview, isLoggedIn } = require('../middleware');
+const { validateReview, isLoggedIn, isReviewAuthor } = require('../middleware');
 const Campground = require('../models/campground');
 const Review = require('../models/review');
 const ExpressError = require('../utils/ExpressError');
@@ -25,6 +25,8 @@ router.post(
 
 router.delete(
   '/:reviewId',
+  isLoggedIn,
+  isReviewAuthor,
   catchAsync(async (req, res) => {
     const { id, reviewId } = req.params;
     // $pull is a mongoose method that removes the document from the array
