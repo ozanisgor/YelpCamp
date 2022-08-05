@@ -4,8 +4,6 @@ const campgrounds = require('../controllers/campgrounds');
 const catchAsync = require('../utils/catchAsync');
 const { isLoggedIn, validateCampground, isAuthor } = require('../middleware');
 
-const Campground = require('../models/campground');
-
 router.get('/', catchAsync(campgrounds.index));
 
 // order does matter here.
