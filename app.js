@@ -12,8 +12,8 @@ const ExpressError = require('./utils/ExpressError');
 const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-
 const User = require('./models/user');
+const mongoSanitize = require('express-mongo-sanitize');
 
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
@@ -43,6 +43,7 @@ app.use(express.urlencoded({ extended: true }));
 // we need method-override for update and delete
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(mongoSanitize());
 
 const sessionConfig = {
   secret: 'thisshouldbeabettersecret',
@@ -65,6 +66,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
+  console.log(req.query);
   if (!['/login', '/'].includes(req.originalUrl)) {
     req.session.returnTo = req.originalUrl;
   }
