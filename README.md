@@ -4,9 +4,8 @@ YelpCamp is a campgrounds app that allowing users to add new places, review exis
 
 ![yelpcampgif](https://github.com/ozanisgor/YelpCamp/blob/main/assets/gifs/yelpcamp.gif)
 
-## Usage
-
 ## Installation
+This Project was built using [Node v16.18.0](https://nodejs.org/en/download/releases)
 
 In the root folder create .env file 
 ```bash
@@ -32,6 +31,8 @@ Run the app
 npm start
 ```
 
-## License
+## Credits
 
-[MIT](https://choosealicense.com/licenses/mit/)
+- [The Web Developer Bootcamp](https://www.udemy.com/course/the-web-developer-bootcamp/) created by [Colt Steele](https://www.linkedin.com/in/coltsteele/)
+
+
