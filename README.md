@@ -2,6 +2,10 @@
 
 YelpCamp is a campgrounds app that allowing CRUD actions for both campgrounds and their reviews with the ability of showing campgrounds on the map.
 
+<br>
+<br>
+<br>
+
 ![yelpcampgif](https://github.com/ozanisgor/YelpCamp/blob/main/assets/gifs/yelpcamp.gif)
 
 ## Installation
