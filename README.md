@@ -1,11 +1,13 @@
 # YelpCamp
 
-YelpCamp is a campgrounds app that allowing users to add new places, review existing ones and delete them with the feature of show them on the map.
+YelpCamp is a campgrounds app that allowing CRUD actions for both campgrounds and their reviews with the ability of showing campgrounds on the map.
 
 ![yelpcampgif](https://github.com/ozanisgor/YelpCamp/blob/main/assets/gifs/yelpcamp.gif)
 
 ## Installation
-This Project was built using [Node v16.18.0](https://nodejs.org/en/download/releases)
+Do the following steps for installation
+
+This Project was built using [Node v16.18.0](https://nodejs.org/en/download/releases) 
 
 In the root folder create .env file 
 ```bash
