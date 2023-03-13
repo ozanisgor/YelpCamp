@@ -43,7 +43,3 @@ npm start
 ## Credits
 
 - [The Web Developer Bootcamp](https://www.udemy.com/course/the-web-developer-bootcamp/) created by [Colt Steele](https://www.linkedin.com/in/coltsteele/)
-
-## Known Issues
-
-- Heroku stoped free services. Will migrate to another service soon.
